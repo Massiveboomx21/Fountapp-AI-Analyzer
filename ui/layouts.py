@@ -44,6 +44,152 @@ def create_main_layout():
                 create_stats_section(),
                 
             ], fluid=True, className="main-container")
+        ]),
+        
+        # Loading overlay
+        html.Div(
+            id='loading-overlay',
+            children=[
+                dbc.Spinner(
+                    html.Div([
+                        html.H4("Επεξεργασία εγγράφων...", className="text-white mb-3"),
+                        dbc.Progress(id="progress-bar", value=0, className="mb-2"),
+                        html.P(id="progress-text", className="text-white", children="Προετοιμασία...")
+                    ]),
+                    size="lg",
+                    color="primary"
+                )
+            ],
+            className="loading-overlay",
+            style={'display': 'none'}
+        )
+    ])
+
+def create_header():
+    """Δημιουργία header"""
+    return dbc.Navbar([
+        dbc.Container([
+            dbc.Row([
+                dbc.Col([
+                    html.Div([
+                        html.I(className="fas fa-brain me-2", style={'color': '#007bff'}),
+                        html.Span("AI Document Analyzer", className="header-title fs-3")
+                    ])
+                ], width="auto"),
+                dbc.Col([
+                    dbc.Badge(
+                        "Powered by Llama 3.1",
+                        color="info",
+                        className="ms-2"
+                    )
+                ], width="auto")
+            ], align="center", className="w-100", justify="between")
+        ], fluid=True)
+    ], color="white", className="mb-4 shadow-sm")
+
+def create_control_panel():
+    """Δημιουργία panel ελέγχων"""
+    return dbc.Card([
+        dbc.CardHeader([
+            html.H5([
+                html.I(className="fas fa-cog me-2"),
+                "Ρυθμίσεις Ανάλυσης"
+            ], className="mb-0")
+        ]),
+        dbc.CardBody([
+            # Folder Selection
+            html.Div([
+                html.Label("Επιλογή Φακέλου:", className="form-label fw-bold"),
+                dbc.InputGroup([
+                    dbc.Input(
+                        id="folder-path-input",
+                        placeholder="C:\\Users\\...\\Documents",
+                        value="",
+                        type="text"
+                    ),
+                    dbc.Button(
+                        [html.I(className="fas fa-folder-open")],
+                        id="browse-folder-btn",
+                        color="outline-secondary",
+                        n_clicks=0
+                    )
+                ], className="mb-3"),
+                
+                # Folder validation
+                html.Div(id="folder-validation", className="mb-3")
+            ]),
+            
+            # Processing Options
+            html.Hr(),
+            html.H6("Επιλογές Επεξεργασίας:", className="fw-bold"),
+            
+            dbc.Checklist(
+                id="processing-options",
+                options=[
+                    {"label": "Recursive σάρωση υποφακέλων", "value": "recursive"},
+                    {"label": "Συμπερίληψη εικόνων (OCR)", "value": "include_images"},
+                    {"label": "Λεπτομερής ανάλυση", "value": "detailed_analysis"}
+                ],
+                value=["recursive", "include_images"],
+                className="mb-3"
+            ),
+            
+            # File Types
+            html.Label("Τύποι Αρχείων:", className="form-label fw-bold"),
+            dbc.Checklist(
+                id="file-types",
+                options=[
+                    {"label": "PDF", "value": "pdf"},
+                    {"label": "Word (DOCX)", "value": "docx"},
+                    {"label": "Text (TXT)", "value": "txt"},
+                    {"label": "Εικόνες (PNG, JPG)", "value": "images"}
+                ],
+                value=["pdf", "docx", "txt", "images"],
+                className="mb-3"
+            ),
+            
+            # Action Buttons
+            html.Hr(),
+            dbc.Row([
+                dbc.Col([
+                    dbc.Button(
+                        [
+                            html.I(className="fas fa-play me-2"),
+                            "Έναρξη Ανάλυσης"
+                        ],
+                        id="start-analysis-btn",
+                        color="primary",
+                        size="lg",
+                        disabled=True,
+                        className="w-100 mb-2"
+                    )
+                ], width=12),
+                dbc.Col([
+                    dbc.Button(
+                        [
+                            html.I(className="fas fa-stop me-2"),
+                            "Διακοπή"
+                        ],
+                        id="stop-analysis-btn",
+                        color="danger",
+                        size="sm",
+                        disabled=True,
+                        className="w-100"
+                    )
+                ], width=6),
+                dbc.Col([
+                    dbc.Button(
+                        [
+                            html.I(className="fas fa-refresh me-2"),
+                            "Ανανέωση"
+                        ],
+                        id="refresh-btn",
+                        color="secondary",
+                        size="sm",
+                        className="w-100"
+                    )
+                ], width=6)
+            ])
         ])
     ], className="card-custom")
 
@@ -330,150 +476,4 @@ def create_document_card(doc):
     # Filter out None items
     card_content = [item for item in card_content if item is not None]
     
-    return html.Div(card_content, className="file-item"),
-        
-        # Loading overlay
-        html.Div(
-            id='loading-overlay',
-            children=[
-                dbc.Spinner(
-                    html.Div([
-                        html.H4("Επεξεργασία εγγράφων...", className="text-white mb-3"),
-                        dbc.Progress(id="progress-bar", value=0, className="mb-2"),
-                        html.P(id="progress-text", className="text-white", children="Προετοιμασία...")
-                    ]),
-                    size="lg",
-                    color="primary"
-                )
-            ],
-            className="loading-overlay",
-            style={'display': 'none'}
-        )
-    ])
-
-def create_header():
-    """Δημιουργία header"""
-    return dbc.Navbar([
-        dbc.Container([
-            dbc.Row([
-                dbc.Col([
-                    html.Div([
-                        html.I(className="fas fa-brain me-2", style={'color': '#007bff'}),
-                        html.Span("AI Document Analyzer", className="header-title fs-3")
-                    ])
-                ], width="auto"),
-                dbc.Col([
-                    dbc.Badge(
-                        "Powered by Llama 3.1",
-                        color="info",
-                        className="ms-2"
-                    )
-                ], width="auto")
-            ], align="center", className="w-100", justify="between")
-        ], fluid=True)
-    ], color="white", light=True, className="mb-4 shadow-sm")
-
-def create_control_panel():
-    """Δημιουργία panel ελέγχων"""
-    return dbc.Card([
-        dbc.CardHeader([
-            html.H5([
-                html.I(className="fas fa-cog me-2"),
-                "Ρυθμίσεις Ανάλυσης"
-            ], className="mb-0")
-        ]),
-        dbc.CardBody([
-            # Folder Selection
-            html.Div([
-                html.Label("Επιλογή Φακέλου:", className="form-label fw-bold"),
-                dbc.InputGroup([
-                    dbc.Input(
-                        id="folder-path-input",
-                        placeholder="C:\\Users\\...\\Documents",
-                        value="",
-                        type="text"
-                    ),
-                    dbc.Button(
-                        [html.I(className="fas fa-folder-open")],
-                        id="browse-folder-btn",
-                        color="outline-secondary",
-                        n_clicks=0
-                    )
-                ], className="mb-3"),
-                
-                # Folder validation
-                html.Div(id="folder-validation", className="mb-3")
-            ]),
-            
-            # Processing Options
-            html.Hr(),
-            html.H6("Επιλογές Επεξεργασίας:", className="fw-bold"),
-            
-            dbc.Checklist(
-                id="processing-options",
-                options=[
-                    {"label": "Recursive σάρωση υποφακέλων", "value": "recursive"},
-                    {"label": "Συμπερίληψη εικόνων (OCR)", "value": "include_images"},
-                    {"label": "Λεπτομερής ανάλυση", "value": "detailed_analysis"}
-                ],
-                value=["recursive", "include_images"],
-                className="mb-3"
-            ),
-            
-            # File Types
-            html.Label("Τύποι Αρχείων:", className="form-label fw-bold"),
-            dbc.Checklist(
-                id="file-types",
-                options=[
-                    {"label": "PDF", "value": "pdf"},
-                    {"label": "Word (DOCX)", "value": "docx"},
-                    {"label": "Text (TXT)", "value": "txt"},
-                    {"label": "Εικόνες (PNG, JPG)", "value": "images"}
-                ],
-                value=["pdf", "docx", "txt", "images"],
-                className="mb-3"
-            ),
-            
-            # Action Buttons
-            html.Hr(),
-            dbc.Row([
-                dbc.Col([
-                    dbc.Button(
-                        [
-                            html.I(className="fas fa-play me-2"),
-                            "Έναρξη Ανάλυσης"
-                        ],
-                        id="start-analysis-btn",
-                        color="primary",
-                        size="lg",
-                        disabled=True,
-                        className="w-100 mb-2"
-                    )
-                ], width=12),
-                dbc.Col([
-                    dbc.Button(
-                        [
-                            html.I(className="fas fa-stop me-2"),
-                            "Διακοπή"
-                        ],
-                        id="stop-analysis-btn",
-                        color="danger",
-                        size="sm",
-                        disabled=True,
-                        className="w-100"
-                    )
-                ], width=6),
-                dbc.Col([
-                    dbc.Button(
-                        [
-                            html.I(className="fas fa-refresh me-2"),
-                            "Ανανέωση"
-                        ],
-                        id="refresh-btn",
-                        color="secondary",
-                        size="sm",
-                        className="w-100"
-                    )
-                ], width=6)
-            ])
-        ])
+    return html.Div(card_content, className="file-item")
