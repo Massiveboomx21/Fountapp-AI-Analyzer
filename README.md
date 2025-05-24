@@ -28,7 +28,7 @@
 ### 1. Clone το Repository
 ```bash
 git clone 
-cd AI_Document_Analyzer
+cd Fountapp-AI-Analyzer
 ```
 
 ### 2. Εκτέλεση Setup Script
