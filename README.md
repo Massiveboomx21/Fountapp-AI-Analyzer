@@ -1,93 +1,93 @@
 # AI Document Analyzer
 
-Εφαρμογή για αυτόματη ανάλυση εγγράφων με τεχνητή νοημοσύνη. Σαρώνει φακέλους, εξάγει κείμενο από έγγραφα και αναλύει το περιεχόμενό τους χρησιμοποιώντας τοπικό AI model.
+Application for automatic document analysis using artificial intelligence. Scans folders, extracts text from documents and analyzes their content using local AI models.
 
-## 🚀 Χαρακτηριστικά
+## 🚀 Features
 
-- **Σάρωση φακέλων**: Αυτόματη εύρεση και επεξεργασία εγγράφων
-- **Πολλαπλοί τύποι αρχείων**: PDF, DOCX, TXT, εικόνες (OCR)
-- **AI Ανάλυση**: Περίληψη, λέξεις-κλειδιά, κατηγοριοποίηση, sentiment analysis
-- **Τοπικό AI**: Χρήση Llama 3.1 χωρίς cloud dependencies
-- **Web Interface**: Σύγχρονη διεπαφή με Dash
-- **Database**: Αποθήκευση και αναζήτηση αποτελεσμάτων
+- **Folder Scanning**: Automatic discovery and processing of documents
+- **Multiple File Types**: PDF, DOCX, TXT, images (OCR)
+- **AI Analysis**: Summary, keywords, categorization, sentiment analysis
+- **Local AI**: Uses Llama 3.1 without cloud dependencies
+- **Web Interface**: Modern interface with Dash
+- **Database**: Storage and search of results
 
-## 📋 Απαιτήσεις
+## 📋 Requirements
 
-### Λογισμικό
+### Software
 - **Python 3.8+**
-- **Ollama** (για AI model)
-- **Tesseract OCR** (προαιρετικό, για εικόνες)
+- **Ollama** (for AI model)
+- **Tesseract OCR** (optional, for images)
 
 ### Hardware
-- **RAM**: 8GB+ (για Llama 3.1 8B)
-- **Storage**: 5GB+ ελεύθερος χώρος
-- **CPU**: 4+ cores προτεινόμενα
+- **RAM**: 8GB+ (for Llama 3.1 8B)
+- **Storage**: 5GB+ free space
+- **CPU**: 4+ cores recommended
 
-## 🛠️ Εγκατάσταση
+## 🛠️ Installation
 
-### 1. Clone το Repository
+### 1. Clone the Repository
 ```bash
 git clone 
 cd Fountapp-AI-Analyzer
 ```
 
-### 2. Εκτέλεση Setup Script
+### 2. Run Setup Script
 ```bash
 python setup.py
 ```
 
-### 3. Εγκατάσταση Ollama
-1. Κατεβάστε από: https://ollama.ai
-2. Εγκαταστήστε και εκκινήστε
-3. Κατεβάστε το model:
+### 3. Install Ollama
+1. Download from: https://ollama.ai
+2. Install and start
+3. Download the model:
 ```bash
 ollama pull llama3.1:8b
 ```
 
-### 4. Εγκατάσταση Tesseract (Προαιρετικό)
+### 4. Install Tesseract (Optional)
 **Windows:**
-1. Κατεβάστε από: https://github.com/UB-Mannheim/tesseract/wiki
-2. Εγκαταστήστε και προσθέστε στο PATH
-3. Κατεβάστε ελληνικά language packs
+1. Download from: https://github.com/UB-Mannheim/tesseract/wiki
+2. Install and add to PATH
+3. Download Greek language packs
 
-## 🎯 Χρήση
+## 🎯 Usage
 
-### Εκκίνηση Εφαρμογής
+### Starting the Application
 ```bash
 python main.py
 ```
 
-Η εφαρμογή θα είναι διαθέσιμη στο: http://localhost:8050
+The application will be available at: http://localhost:8050
 
-### Βασική Χρήση
-1. **Επιλογή φακέλου**: Κλικ στο "Browse" και επιλέξτε φάκελο
-2. **Ρυθμίσεις**: Επιλέξτε τύπους αρχείων και επιλογές επεξεργασίας
-3. **Έναρξη**: Κλικ "Έναρξη Ανάλυσης"
-4. **Αποτελέσματα**: Παρακολούθηση προόδου και προβολή αποτελεσμάτων
+### Basic Usage
+1. **Select folder**: Click "Browse" and select folder
+2. **Settings**: Choose file types and processing options
+3. **Start**: Click "Start Analysis"
+4. **Results**: Monitor progress and view results
 
-### Επιλογές Επεξεργασίας
-- **Recursive σάρωση**: Επεξεργασία υποφακέλων
-- **Εικόνες (OCR)**: Εξαγωγή κειμένου από εικόνες
-- **Λεπτομερής ανάλυση**: Πιο αναλυτική AI επεξεργασία
+### Processing Options
+- **Recursive scanning**: Process subfolders
+- **Images (OCR)**: Extract text from images
+- **Detailed analysis**: More thorough AI processing
 
-## 📁 Δομή Project
+## 📁 Project Structure
 
 ```
 AI_Document_Analyzer/
-├── main.py                 # Εκκίνηση εφαρμογής
-├── config.py              # Ρυθμίσεις
+├── main.py                 # Application startup
+├── config.py              # Settings
 ├── requirements.txt       # Dependencies
 ├── setup.py              # Setup script
-├── README.md             # Αυτό το αρχείο
+├── README.md             # This file
 │
-├── app/                  # Dash εφαρμογή
+├── app/                  # Dash application
 │   ├── dash_app.py      # Setup
 │   └── callbacks.py     # Callbacks
 │
-├── core/                # Κύρια λογική
-│   ├── file_scanner.py  # Σάρωση αρχείων
-│   ├── document_processor.py # Επεξεργασία εγγράφων
-│   ├── ai_analyzer.py   # AI ανάλυση
+├── core/                # Core logic
+│   ├── file_scanner.py  # File scanning
+│   ├── document_processor.py # Document processing
+│   ├── ai_analyzer.py   # AI analysis
 │   └── database.py      # Database operations
 │
 ├── models/              # AI Models
@@ -105,17 +105,17 @@ AI_Document_Analyzer/
     └── temp/          # Temporary files
 ```
 
-## ⚙️ Ρυθμίσεις
+## ⚙️ Configuration
 
-Επεξεργαστείτε το `config.py` για προσαρμογή:
+Edit `config.py` for customization:
 
 ```python
 # AI Model
-AI_MODEL_NAME = "llama3.1:8b"  # Όνομα model
+AI_MODEL_NAME = "llama3.1:8b"  # Model name
 AI_API_URL = "http://localhost:11434"  # Ollama URL
 
 # Document Processing  
-MAX_CHUNK_SIZE = 4000  # Μέγεθος chunks
+MAX_CHUNK_SIZE = 4000  # Chunk size
 SUPPORTED_FORMATS = {'.pdf', '.docx', '.txt', '.png', '.jpg', '.jpeg'}
 
 # App Settings
@@ -126,74 +126,74 @@ DEBUG = True
 
 ## 🔧 Troubleshooting
 
-### Συχνά Προβλήματα
+### Common Issues
 
-**1. Ollama δεν συνδέεται**
+**1. Ollama not connecting**
 ```bash
-# Έλεγχος αν τρέχει
+# Check if running
 curl http://localhost:11434/api/tags
 
-# Επανεκκίνηση
+# Restart
 ollama serve
 ```
 
-**2. Tesseract σφάλματα**
+**2. Tesseract errors**
 ```bash
-# Windows: Προσθήκη στο PATH
+# Windows: Add to PATH
 set PATH=%PATH%;C:\Program Files\Tesseract-OCR
 ```
 
 **3. Memory errors**
-- Χρησιμοποιήστε μικρότερο model (llama3.1:7b)
-- Μειώστε MAX_CHUNK_SIZE στο config.py
+- Use smaller model (llama3.1:7b)
+- Reduce MAX_CHUNK_SIZE in config.py
 
 **4. Permission errors**
-- Εκτελέστε ως Administrator (Windows)
-- Ελέγξτε δικαιώματα φακέλων
+- Run as Administrator (Windows)
+- Check folder permissions
 
 ### Logs
-Τα logs αποθηκεύονται στο `data/logs/`:
-- `app_YYYY-MM-DD.log`: Γενικά logs
-- `errors_YYYY-MM-DD.log`: Μόνο σφάλματα
+Logs are stored in `data/logs/`:
+- `app_YYYY-MM-DD.log`: General logs
+- `errors_YYYY-MM-DD.log`: Error logs only
 
 ## 📊 Performance Tips
 
-### Για καλύτερη απόδοση:
-1. **SSD Storage**: Για γρήγορη πρόσβαση στα αρχεία
-2. **RAM**: 16GB+ για μεγάλα έγγραφα
-3. **GPU**: NVIDIA GPU για γρηγορότερο AI (μελλοντική υποστήριξη)
+### For better performance:
+1. **SSD Storage**: For fast file access
+2. **RAM**: 16GB+ for large documents
+3. **GPU**: NVIDIA GPU for faster AI (future support)
 
 ### Batch Processing:
-- Επεξεργασία 50-100 αρχείων κάθε φορά
-- Χρήση "Λεπτομερής ανάλυση" μόνο όταν χρειάζεται
+- Process 50-100 files at a time
+- Use "Detailed analysis" only when needed
 
 ## 🤝 Contributing
 
-1. Fork το project
-2. Δημιουργήστε feature branch
-3. Commit τις αλλαγές σας
-4. Push στο branch
-5. Δημιουργήστε Pull Request
+1. Fork the project
+2. Create feature branch
+3. Commit your changes
+4. Push to branch
+5. Create Pull Request
 
 ## 📄 License
 
-MIT License - Δείτε το LICENSE αρχείο για λεπτομέρειες.
+MIT License - See LICENSE file for details.
 
-## 🆘 Υποστήριξη
+## 🆘 Support
 
-Για προβλήματα ή ερωτήσεις:
-1. Ελέγξτε τα logs στο `data/logs/`
-2. Δημιουργήστε GitHub issue
-3. Συμπεριλάβετε λεπτομέρειες συστήματος και σφάλματος
+For issues or questions:
+1. Check logs in `data/logs/`
+2. Create GitHub issue
+3. Include system details and error information
 
-## 🔮 Μελλοντικές Βελτιώσεις
+## 🔮 Future Improvements
 
-- [ ] GPU υποστήριξη για γρηγορότερο AI
-- [ ] Περισσότερα AI models (Mistral, Qwen)
-- [ ] Export αποτελεσμάτων (PDF, Excel)
+- [ ] GPU support for faster AI
+- [ ] More AI models (Mistral, Qwen)
+- [ ] Export results (PDF, Excel)
 - [ ] REST API
 - [ ] Docker containerization
-- [ ] Πολυγλωσσική υποστήριξη
+- [ ] Multi-language support
 
 ---
 
