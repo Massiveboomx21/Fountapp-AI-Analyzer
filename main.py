@@ -41,7 +41,7 @@ def main():
         logger.info(f"Εκκίνηση server στο http://{config.HOST}:{config.PORT}")
         
         # Εκκίνηση εφαρμογής
-        app.run_server(
+        app.run(
             debug=config.DEBUG,
             host=config.HOST,
             port=config.PORT
