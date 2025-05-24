@@ -48,7 +48,7 @@ ollama pull llama3.1:8b
 **Windows:**
 1. Download from: https://github.com/UB-Mannheim/tesseract/wiki
 2. Install and add to PATH
-3. Download Greek language packs
+3. Download language packs
 
 ## 🎯 Usage
 
